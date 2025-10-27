@@ -23,11 +23,11 @@ export class TransactionsService {
     return this.transactionRepository.find();
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     return this.transactionRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateTransactionDto: UpdateTransactionDto) {
+  async update(id: string, updateTransactionDto: UpdateTransactionDto) {
     const transaction = await this.transactionRepository.findOneBy({ id });
 
     if (!transaction) {
@@ -38,8 +38,6 @@ export class TransactionsService {
     transaction.date = updateTransactionDto.date ?? transaction.date;
     transaction.description =
       updateTransactionDto.description ?? transaction.description;
-    transaction.category =
-      updateTransactionDto.category ?? transaction.category;
 
     await this.entityManager.save(transaction);
 
