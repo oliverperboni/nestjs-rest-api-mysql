@@ -15,7 +15,7 @@ export class TransactionsService {
 
   async create(createTransactionDto: CreateTransactionDto) {
     const transaction = new Transaction(createTransactionDto);
-    await this.entityManager.save(transaction);
+    await this.transactionRepository.save(transaction);
     return 'This action adds a new transaction';
   }
 
